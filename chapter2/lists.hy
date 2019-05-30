@@ -53,5 +53,4 @@
                      s sizes
                      (% "%s %s" (, c s)))]
     (print tshirt))
-  
 )
