@@ -42,5 +42,16 @@
                        color colors
                        (, color size)))
 
+  ;; generator experssion
+  ;; in hy use
+  (tuple (gfor symbol symbols (ord symbol)))
+
+  (import array)
+  (array.array "I" (gfor symbol symbols (ord symbol)))
+
+  (for [tshirt (gfor c colors
+                     s sizes
+                     (% "%s %s" (, c s)))]
+    (print tshirt))
   
-  )
+)
