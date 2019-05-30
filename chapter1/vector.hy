@@ -8,7 +8,7 @@
           self.y y))
 
   (defn --repr-- [self]
-    (% "Vector(%r, %r)" (, self.x self.y)))
+    (% "(Vector %r %r)" (, self.x self.y)))
 
   (defn --abs-- [self]
     (hypot self.x self.y))
