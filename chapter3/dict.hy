@@ -18,4 +18,18 @@
                  "two" 2}))
   (= a b c d e)
 
+  ;; dict comprehension
+  
+  (setv DIAL_CODES [(, 86 "China")
+                    (, 91 "India")
+                    (, 1 "United States")
+                    (, 7 "Russia")])
+
+  (setv country-code (dfor [code country] DIAL_CODES [country code]))
+  country-code
+
+  (first (.items country-code))
+  (dfor [country code] (.items country-code)
+        :if (< code 66)
+        [code (.upper country)])
   )
