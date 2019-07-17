@@ -33,4 +33,16 @@
         :if (< code 66)
         [code (.upper country)])
 
+
+  (setv d1 (dict DIAL_CODES))
+  (d1.keys)
+  (.keys d1)
+
+  (setv d2 (dict (sorted DIAL_CODES)))
+  (d2.keys)
+
+  (setv d3 (dict (sorted DIAL_CODES :key (fn[x] (get x 1)))))
+  (d3.keys)
+
+  (assert (= d1 d2 d3))
   )
