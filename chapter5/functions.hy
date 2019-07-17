@@ -75,4 +75,42 @@
 
   (setv cc-name (itemgetter 1 0))
   (for [city metro-data] (print (cc-name city)))
+
+  ;;5-24
+  (import [collections [namedtuple]]
+          [operator [attrgetter]])
+  (setv LatLong (namedtuple "LatLong" "lat long"))
+  (setv Metropolis (namedtuple "Metropolis" "name cc pop coord"))
+  (setv metro-areas
+        (lfor [name cc pop [lat long]] metro-data
+              (Metropolis name cc pop (LatLong lat long))))
+  (get metro-areas 0)
+  (. (get metro-areas 0) coord lat)
+  (setv name-lat (attrgetter "name" "coord.lat"))
+  (for [city (sorted metro-areas :key (attrgetter "coord.lat"))]
+    (print (name-lat city)))
+
+  ;;5-25
+  (import [operator [methodcaller]])
+  (setv s "The time has come"
+        upcase (methodcaller "upper"))
+  (upcase s)
+  (setv hiphenate (methodcaller "replace" " " "-"))
+  (hiphenate s)
+
+  ;;5-26
+  (import [functools [partial]])
+  (setv triplet (partial * 3))
+  (triplet 7)
+  (list (map triplet (range 1 10)))
+
+  ;;5.27
+  (import unicodedata [functools partial])
+  (setv nfc (partial unicodedata.normalize "NFC")
+        s1 "café"
+        s2 "cafe\u0301"
+        )
+  (, s1 s2)
+  (= s1 s2)
+  (= (nfc s1) (nfc s2))
   )

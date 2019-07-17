@@ -49,5 +49,14 @@
     (print name "=" value))
   (del (get my-tag "name"))
   (setv bound-args (.bind sig #** my-tag)) ;; error arg name required.
-  
+
+
+  ;;5-28
+  (import [functools [partial]])
+  (setv picture (partial tag "img" :cls "pic-frame"))
+  (picture :src "wumpus.jgeg")
+  (,
+    picture.func
+    picture.args
+    picture.keywords)
   )
