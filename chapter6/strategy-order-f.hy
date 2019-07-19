@@ -54,6 +54,28 @@
       (* .07 (order.total))
       0))
 
+;;6-6
+
+(setv promos [fidelity-promo bulk-item-promo large-order-promo])
+
+(defn best-promo [order]
+  (max (gfor promo promos (promo order))))
+
+;;6-7
+(setv promos (lfor name (globals)
+                   :if (and (.endswith name "_promo")
+                            (!= name "best_promo"))
+                   (get (globals) name)))
+
+;;6-8
+(import inspect sys)
+
+(setv promos (lfor func (inspect.getmembers
+                          ;; promotions -- module with just the strategies
+                          (get sys.modules --name--)
+                          inspect.isfunction)
+                   func))
+
 (comment
   (setv
     joe (Customer "John Doe" 0)
@@ -74,6 +96,11 @@
                          (LineItem (str item-code) 1 1.0)))
   (Order joe long-order large-order-promo)
   (Order joe cart large-order-promo)
+
+  ;;6-5
+  (Order joe long-order best-promo)
+  (Order joe banana-cart best-promo)
+  (Order ann cart best-promo)
   )
 
 
