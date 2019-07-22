@@ -12,7 +12,7 @@
           )
     (print (% "[%0.8fs] %s(%s) -> %r" (, elapsed name arg-str result)))
     result
-    ) clocked)
+    )clocked)
 
 ;;7-16
 
